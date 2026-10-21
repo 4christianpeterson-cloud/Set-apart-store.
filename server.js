@@ -8,12 +8,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 const PRODUCTS = {
-  hoodie: { name: "Set Apart Hoodie", price: 5499 },
+  hoodie: { name: "Core Logo Hoodie", price: 5499 },
   jesus_tee: { name: "Jesus Changes Everything Tee", price: 3299 },
-  not_world: { name: "Not of This World Hoodie", price: 5499 },
-  chosen_tee: { name: "Chosen Tee", price: 2999 },
-  crown_hat: { name: "Crown Trucker Hat", price: 2499 },
-  sweatpants: { name: "Set Apart Sweatpants", price: 4499 }
+  not_world: { name: "Not of This World Tee", price: 3499 },
+  sweatpants: { name: "Core Logo Sweatpants", price: 4499 },
+  shorts: { name: "Set Apart Training Shorts", price: 2999 },
+  crown_hat: { name: "Core Logo Cap", price: 2499 },
+  beanie: { name: "Set Apart Beanie", price: 2299 },
+  sneaker: { name: "Set Apart Street Sneaker", price: 6999 }
 };
 
 app.get("/api/products", (_req, res) => {
