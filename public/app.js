@@ -35,15 +35,8 @@ $$(".add-button").forEach(b=>b.addEventListener("click",()=>{cart[b.dataset.id]=
 $("#cart-open").addEventListener("click",openCart);$("#cart-close").addEventListener("click",closeCart);$("#cart-backdrop").addEventListener("click",closeCart);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();});
 $$(".filter").forEach(b=>b.addEventListener("click",()=>{$$(".filter").forEach(x=>x.classList.toggle("active",x===b));$$(".product-card").forEach(card=>{card.hidden=b.dataset.filter!=="all"&&card.dataset.category!==b.dataset.filter;});}));
-$("#checkout-button").addEventListener("click",async()=>{
-  const button=$("#checkout-button");button.disabled=true;button.textContent="ORDERS OPEN SOON";$("#checkout-note").textContent="Orders open after products and fulfillment are verified.";return;
-  try{
-    const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:Object.entries(cart).map(([id,quantity])=>({id,quantity}))})});
-    const data=await response.json();
-    if(!response.ok||!data.url)throw new Error(data.error||"Checkout is not ready yet.");
-    window.location.href=data.url;
-  }catch(error){$("#checkout-note").textContent=error.message;toast(error.message);}
-  finally{button.disabled=false;button.textContent="SECURE CHECKOUT ↗";}
+$("#checkout-button").addEventListener("click",()=>{
+  toast("Orders open after real products and fulfillment are verified.");
 });
 $("#newsletter-form").addEventListener("submit",e=>{e.preventDefault();$("#newsletter-message").textContent="Thanks! Email signup isn't connected yet, so no email was saved.";toast("Signup demo only — email service not connected.");});
 $("#year").textContent=new Date().getFullYear();
