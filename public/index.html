@@ -1,1 +1,115 @@
-public/index.html
+doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="SET APART — Christ-centered streetwear. Live different. Romans 12:2.">
+  <title>SET APART — Christian Streetwear</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="announcement">LIVE DIFFERENT. WALK BY FAITH. <span>ROMANS 12:2</span></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Set Apart home">
+      <span class="brand-crown">♛</span><span class="brand-word">SET APART</span><small>LIVE DIFFERENT.</small>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#shop">Shop</a><a href="#mission">Our Mission</a>
+    </nav>
+    <button class="cart-trigger" id="cart-open" aria-label="Open shopping cart">BAG <span id="cart-count">0</span> ↗</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grain"></div>
+      <div class="hero-cross" aria-hidden="true">✝</div>
+      <div class="hero-copy">
+        <p class="eyebrow">FAITH FIRST. FEAR LESS.</p>
+        <h1>SET<br><span>APART.</span></h1>
+        <p class="hero-sub">NOT OF THIS WORLD. <span>ROMANS 12:2</span></p>
+        <a class="button button-light" href="#shop">SHOP THE DROP <span>↘</span></a>
+      </div>
+      <div class="hero-side-note">MADE TO REMIND YOU<br>WHO YOU BELONG TO.</div>
+      <div class="hero-bottom">CHRIST OVER CULTURE <span>✝</span> PURPOSE OVER PRESSURE</div>
+    </section>
+
+    <section class="ticker" aria-label="Brand message"><div>JESUS CHANGES EVERYTHING ✳ LIVE DIFFERENT ✳ WALK BY FAITH ✳ JESUS CHANGES EVERYTHING ✳ LIVE DIFFERENT ✳ WALK BY FAITH ✳</div></section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div><p class="eyebrow dark">THE FIRST DROP / 001</p><h2>BUILT ON <span>FAITH.</span></h2></div>
+        <p>Clean colors. Loud message.<br>Every piece means something.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter products">
+        <button class="filter active" data-filter="all">ALL PIECES</button>
+        <button class="filter" data-filter="tops">TOPS</button>
+        <button class="filter" data-filter="bottoms">BOTTOMS</button>
+        <button class="filter" data-filter="accessories">ACCESSORIES</button>
+      </div>
+      <div class="product-grid" id="product-grid">
+        <article class="product-card" data-category="tops">
+          <div class="product-art art-hoodie"><span class="tag">BESTSELLER</span><div class="garment hoodie"><div class="hood"></div><div class="print scribble">SET<br>APART<span>✝</span></div><div class="pocket"></div></div></div>
+          <div class="product-info"><div><h3>Set Apart Hoodie</h3><p>Heavyweight-inspired graphic</p></div><strong>$54.99</strong></div>
+          <button class="add-button" data-id="hoodie">ADD TO BAG <span>＋</span></button>
+        </article>
+        <article class="product-card" data-category="tops">
+          <div class="product-art art-tee"><div class="garment tee white-tee"><div class="print scribble">JESUS<br>CHANGES<br>EVERYTHING<span>✝</span></div></div></div>
+          <div class="product-info"><div><h3>Jesus Changes Everything Tee</h3><p>Black print / clean white</p></div><strong>$32.99</strong></div>
+          <button class="add-button" data-id="jesus_tee">ADD TO BAG <span>＋</span></button>
+        </article>
+        <article class="product-card" data-category="tops">
+          <div class="product-art art-hoodie"><div class="garment hoodie"><div class="hood"></div><div class="print cross-print">✝<small>NOT OF<br>THIS WORLD</small></div><div class="pocket"></div></div></div>
+          <div class="product-info"><div><h3>Not of This World Hoodie</h3><p>Statement back-print concept</p></div><strong>$54.99</strong></div>
+          <button class="add-button" data-id="not_world">ADD TO BAG <span>＋</span></button>
+        </article>
+        <article class="product-card" data-category="tops">
+          <div class="product-art art-tee"><div class="garment tee black-tee"><div class="print scribble">♛<br>CHOSEN<span>✝</span></div></div></div>
+          <div class="product-info"><div><h3>Chosen Tee</h3><p>Black-on-black / white graphic</p></div><strong>$29.99</strong></div>
+          <button class="add-button" data-id="chosen_tee">ADD TO BAG <span>＋</span></button>
+        </article>
+        <article class="product-card" data-category="accessories">
+          <div class="product-art art-hat"><div class="garment hat"><div class="hat-crown">♛</div><div class="hat-brim"></div></div></div>
+          <div class="product-info"><div><h3>Crown Trucker Hat</h3><p>Minimal crown embroidery concept</p></div><strong>$24.99</strong></div>
+          <button class="add-button" data-id="crown_hat">ADD TO BAG <span>＋</span></button>
+        </article>
+        <article class="product-card" data-category="bottoms">
+          <div class="product-art art-pants"><div class="garment pants"><div class="waist"></div><div class="leg left-leg"></div><div class="leg right-leg"></div><span>SET APART ✝</span></div></div>
+          <div class="product-info"><div><h3>Set Apart Sweatpants</h3><p>Grey / subtle leg graphic</p></div><strong>$44.99</strong></div>
+          <button class="add-button" data-id="sweatpants">ADD TO BAG <span>＋</span></button>
+        </article>
+      </div>
+      <p class="prototype-note">Design previews are original digital concepts. Confirm garment blanks, print quality, sizes, shipping, and final product photos before accepting real orders.</p>
+    </section>
+
+    <section class="mission" id="mission">
+      <div class="mission-mark">✝</div>
+      <div><p class="eyebrow">MORE THAN A FIT</p><h2>DON'T BLEND IN.<br><span>STAND IN TRUTH.</span></h2></div>
+      <p>SET APART is a reminder to live with purpose, love people well, and keep Christ at the center — every day, everywhere.</p>
+      <small>“Be transformed by the renewing of your mind.” — ROMANS 12:2</small>
+    </section>
+
+    <section class="newsletter">
+      <div><p class="eyebrow">THE SET APART LIST</p><h2>FIRST TO THE DROP.</h2><p>Get launch updates and new design announcements.</p></div>
+      <form id="newsletter-form"><label for="email">EMAIL ADDRESS</label><div class="email-row"><input id="email" type="email" placeholder="you@example.com" required><button type="submit" aria-label="Sign up">↗</button></div><small id="newsletter-message">Email signup is a demo until connected to an email service.</small></form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#"><span class="brand-crown">♛</span><span class="brand-word">SET APART</span><small>LIVE DIFFERENT.</small></a>
+    <div><strong>EXPLORE</strong><a href="#shop">Shop all</a><a href="#mission">Our mission</a><a href="mailto:support@setapartclothing.com">Contact</a></div>
+    <div><strong>HELP</strong><a href="#shipping">Shipping info</a><a href="#returns">Returns policy</a><a href="#sizes">Size guide</a></div>
+    <div class="footer-message">FAITH FIRST.<br>ALWAYS.</div>
+    <div class="footer-bottom">© <span id="year"></span> SET APART. Made to point beyond ourselves. <span>Online store • Address and support email to be finalized before launch.</span></div>
+  </footer>
+
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <aside class="cart-panel" id="cart-panel" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-head"><div><p class="eyebrow dark">YOUR PICKS</p><h2>YOUR BAG <span id="cart-count-large">0</span></h2></div><button id="cart-close" aria-label="Close cart">✕</button></div>
+    <div id="cart-items" class="cart-items"><p class="empty-cart">Your bag is empty. Go find your piece.</p></div>
+    <div class="cart-footer"><div class="subtotal"><span>SUBTOTAL</span><strong id="cart-total">$0.00</strong></div><p>Shipping and taxes are calculated at checkout.</p><button id="checkout-button" class="button button-dark">SECURE CHECKOUT ↗</button><p class="checkout-note" id="checkout-note">Checkout activates after the store owner connects Stripe.</p></div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
