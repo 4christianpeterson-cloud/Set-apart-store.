@@ -1,0 +1,14 @@
+{
+  "name": "set-apart-clothing-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SET APART Christian streetwear storefront with Stripe Checkout integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "stripe": "^17.7.0"
+  }
+}

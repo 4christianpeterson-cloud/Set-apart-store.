@@ -1,0 +1,70 @@
+const catalog = {
+  hoodie: { name: "Set Apart Hoodie", price: 54.99 },
+  jesus_tee: { name: "Jesus Changes Everything Tee", price: 32.99 },
+  not_world: { name: "Not of This World Hoodie", price: 54.99 },
+  chosen_tee: { name: "Chosen Tee", price: 29.99 },
+  crown_hat: { name: "Crown Trucker Hat", price: 24.99 },
+  sweatpants: { name: "Set Apart Sweatpants", price: 44.99 }
+};
+const cart = {};
+const $ = (s) => document.querySelector(s);
+const money = (n) => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(n);
+$("#year").textContent = new Date().getFullYear();
+
+function showToast(message) {
+  const toast = $("#toast"); toast.textContent = message; toast.classList.add("show");
+  clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+function openCart() { document.body.classList.add("cart-open"); $("#cart-panel").setAttribute("aria-hidden","false"); }
+function closeCart() { document.body.classList.remove("cart-open"); $("#cart-panel").setAttribute("aria-hidden","true"); }
+function countItems() { return Object.values(cart).reduce((sum, item) => sum + item.quantity, 0); }
+function renderCart() {
+  const count = countItems();
+  $("#cart-count").textContent = count; $("#cart-count-large").textContent = count;
+  const items = Object.entries(cart);
+  $("#cart-total").textContent = money(items.reduce((sum,[id,item]) => sum + catalog[id].price * item.quantity,0));
+  if (!items.length) { $("#cart-items").innerHTML = '<p class="empty-cart">Your bag is empty. Go find your piece.</p>'; return; }
+  $("#cart-items").innerHTML = items.map(([id,item]) => `
+    <div class="cart-line">
+      <div><h3>${catalog[id].name}</h3><p>${money(catalog[id].price)} each</p>
+      <div class="quantity"><button data-qty="-1" data-id="${id}" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button data-qty="1" data-id="${id}" aria-label="Increase quantity">＋</button></div></div>
+      <div><div class="cart-line-price">${money(catalog[id].price * item.quantity)}</div><button class="remove-item" data-remove="${id}">Remove</button></div>
+    </div>`).join("");
+}
+document.querySelectorAll(".add-button").forEach(button => button.addEventListener("click", () => {
+  const id = button.dataset.id;
+  if (!cart[id]) cart[id] = { quantity: 0 };
+  if (cart[id].quantity >= 10) return showToast("Maximum quantity is 10 per item.");
+  cart[id].quantity++; renderCart(); showToast(`${catalog[id].name} added to your bag.`);
+}));
+$("#cart-open").addEventListener("click",openCart);
+$("#cart-close").addEventListener("click",closeCart);
+$("#cart-backdrop").addEventListener("click",closeCart);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();});
+$("#cart-items").addEventListener("click",e=>{
+  const qty = e.target.closest("[data-qty]");
+  const remove = e.target.closest("[data-remove]");
+  if(qty){const id=qty.dataset.id;cart[id].quantity+=Number(qty.dataset.qty);if(cart[id].quantity<=0)delete cart[id];else if(cart[id].quantity>10)cart[id].quantity=10;renderCart();}
+  if(remove){delete cart[remove.dataset.remove];renderCart();}
+});
+$("#checkout-button").addEventListener("click",async()=>{
+  const items=Object.entries(cart).map(([id,item])=>({id,quantity:item.quantity}));
+  if(!items.length)return showToast("Add something to your bag first.");
+  const button=$("#checkout-button");button.disabled=true;button.textContent="OPENING SECURE CHECKOUT…";
+  try{
+    const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items})});
+    const data=await response.json();
+    if(!response.ok)throw new Error(data.error||"Checkout is not ready yet.");
+    if(data.url)window.location.href=data.url;
+  }catch(error){$("#checkout-note").textContent=error.message;showToast("Checkout isn't connected yet.");}
+  finally{button.disabled=false;button.textContent="SECURE CHECKOUT ↗";}
+});
+document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{
+  document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===button));
+  document.querySelectorAll(".product-card").forEach(card=>card.hidden=button.dataset.filter!=="all"&&card.dataset.category!==button.dataset.filter);
+}));
+$("#newsletter-form").addEventListener("submit",e=>{e.preventDefault();$("#newsletter-message").textContent="Thanks! Email signup needs an email marketing connection before launch.";});
+const order=new URLSearchParams(location.search).get("order");
+if(order==="success")showToast("Payment complete — thanks for supporting SET APART.");
+if(order==="cancelled")showToast("Checkout cancelled. Your bag is still here.");
+renderCart();
