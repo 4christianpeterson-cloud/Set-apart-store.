@@ -23,6 +23,13 @@ app.get("/api/products", (_req, res) => {
 });
 
 app.post("/api/checkout", async (req, res) => {
+  // Safety gate: do not accept real payments until a real fulfillment provider is connected.
+  if (process.env.FULFILLMENT_READY !== "true") {
+    return res.status(503).json({
+      error: "Orders are not open yet. SET APART is finishing product fulfillment setup, so you will not be charged."
+    });
+  }
+
   if (!process.env.STRIPE_SECRET_KEY) {
     return res.status(503).json({
       error: "Checkout isn't connected yet. The store owner must add a Stripe secret key to the hosting environment."
