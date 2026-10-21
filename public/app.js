@@ -1,10 +1,12 @@
 const PRODUCTS = [
-  {id:"hoodie",name:"Set Apart Hoodie",price:5499,category:"tops",description:"Black hoodie • SET APART graphic"},
-  {id:"jesus_tee",name:"Jesus Changes Everything Tee",price:3299,category:"tops",description:"White tee • bold faith message"},
-  {id:"not_world",name:"Not of This World Hoodie",price:5499,category:"tops",description:"Black hoodie • statement cross graphic"},
-  {id:"chosen_tee",name:"Chosen Tee",price:2999,category:"tops",description:"Black tee • CHOSEN graphic"},
-  {id:"crown_hat",name:"Crown Trucker Hat",price:2499,category:"accessories",description:"Black cap • crown design"},
-  {id:"sweatpants",name:"Set Apart Sweatpants",price:4499,category:"bottoms",description:"Grey sweatpants • subtle leg graphic"}
+  {id:"hoodie",name:"Core Logo Hoodie",price:5499,category:"tops",description:"Black fleece • white chest print"},
+  {id:"jesus_tee",name:"Jesus Changes Everything Tee",price:3299,category:"tops",description:"Black tee • bold faith message"},
+  {id:"not_world",name:"Not of This World Tee",price:3499,category:"tops",description:"Oversized black tee • statement back print"},
+  {id:"sweatpants",name:"Core Logo Sweatpants",price:4499,category:"bottoms",description:"Black relaxed jogger"},
+  {id:"shorts",name:"Set Apart Training Shorts",price:2999,category:"bottoms",description:"Black athletic shorts"},
+  {id:"crown_hat",name:"Core Logo Cap",price:2499,category:"accessories",description:"Black cap • front wordmark"},
+  {id:"beanie",name:"Set Apart Beanie",price:2299,category:"accessories",description:"Black rib-knit beanie"},
+  {id:"sneaker",name:"Set Apart Street Sneaker",price:6999,category:"footwear",description:"Black/white sneaker concept"}
 ];
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
