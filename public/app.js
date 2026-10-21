@@ -22,8 +22,9 @@ function renderCart(){
   $("#cart-total").textContent=money(totalPrice());
   const items=$("#cart-items");
   const entries=Object.entries(cart).filter(([id,q])=>PRODUCTS.some(p=>p.id===id)&&q>0);
-  if(!entries.length){items.innerHTML='<p class="empty-cart">Your bag is empty. Go find your piece.</p>';$("#checkout-button").disabled=true;$("#checkout-note").textContent="Add an item to your bag to begin.";return;}
-  $("#checkout-button").disabled=false;
+  if(!entries.length){items.innerHTML='<p class="empty-cart">Your bag is empty. Go find your piece.</p>';$("#checkout-button").disabled=true;$("#checkout-note").textContent="Orders open after products and fulfillment are verified.";return;}
+  $("#checkout-button").disabled=true;
+  $("#checkout-note").textContent="Orders open after products and fulfillment are verified.";
   items.innerHTML=entries.map(([id,q])=>{const p=PRODUCTS.find(x=>x.id===id);return '<div class="cart-line"><div><h3>'+p.name+'</h3><p>'+money(p.price)+' each</p><div class="qty-controls"><button data-qty="-1" data-id="'+id+'" aria-label="Remove one '+p.name+'">−</button><span>'+q+'</span><button data-qty="1" data-id="'+id+'" aria-label="Add one '+p.name+'">+</button></div></div><strong>'+money(p.price*q)+'</strong></div>';}).join("");
   items.querySelectorAll("[data-qty]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.id;cart[id]=(cart[id]||0)+Number(b.dataset.qty);if(cart[id]<=0)delete cart[id];saveCart();}));
 }
@@ -35,7 +36,7 @@ $("#cart-open").addEventListener("click",openCart);$("#cart-close").addEventList
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();});
 $$(".filter").forEach(b=>b.addEventListener("click",()=>{$$(".filter").forEach(x=>x.classList.toggle("active",x===b));$$(".product-card").forEach(card=>{card.hidden=b.dataset.filter!=="all"&&card.dataset.category!==b.dataset.filter;});}));
 $("#checkout-button").addEventListener("click",async()=>{
-  const button=$("#checkout-button");button.disabled=true;button.textContent="OPENING CHECKOUT…";$("#checkout-note").textContent="Connecting securely…";
+  const button=$("#checkout-button");button.disabled=true;button.textContent="ORDERS OPEN SOON";$("#checkout-note").textContent="Orders open after products and fulfillment are verified.";return;
   try{
     const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:Object.entries(cart).map(([id,quantity])=>({id,quantity}))})});
     const data=await response.json();
